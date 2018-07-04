@@ -1,0 +1,35 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+<body>
+
+<nav class="w3-bar w3-black">
+  <a href="display_users" class="w3-button w3-bar-item"><h4>Customers Database</h4></a>
+
+  {% block content %}
+	{% if user.is_authenticated %}
+            <a id= 'LG' class="w3-button w3-bar-item"  href="{% url 'logout' %}"><h4>logout</h4></a> 
+  			<a class="w3-bar-item"> <h4 style="color:yellow;">Hi, {{user.username}} </h4></a>
+	{% else %}
+             <a href="signup" class="w3-button w3-bar-item"><h4>SignUp</h4></a>
+  			 <a onclick='action()' href="login" class="w3-button w3-bar-item"><h4>login</h4></a>
+	{% endif %}
+{% endblock content %}
+   
+</nav>
+</nav>
+<nav class="w3-bar w3-blue">
+  <h1 align="center"> Suman Group of Hotels </h1>
+</nav>
+<nav class="w3-bar w3-black">
+   <img src="media/background.jpg" width="100%"></img>
+</nav>
+<nav>
+<p align="center"> Suman group of HOTELS are the Best in the world </p>
+</nav> 
+</body>
+</html>

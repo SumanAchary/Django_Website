@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>output</title>
+</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+
+<body >
+{% block i %}
+<h1 align="center">List of Customers</h1>	
+<table border="5" width="10%" cellpadding="10" cellspacing="10" align="center">
+	<tr>
+ 			<th>NAME</th> <th>EMAIL</th> <th>PHONE</th><th>IMAGE</th><th>GENDER</th><th>COUNTRY</th><th>ABOUT</th><th>ACTION</th>
+	</tr>
+	{% for i in Data %}
+	<tr>
+		<td align="center">{{i.Name}}</td>
+		<td>{{i.Email}}</td>
+		<td>{{i.Phone}}</td>
+		<td><img src="{{i.avatar.url}}"></td>
+		<td>{{i.Gender}}</td>
+		<td>{{i.country}}</td>
+		<td>{{i.about}}</td>
+		<td>
+<nav class="w3-bar w3-yellow">
+<a href="edit/{{i.id}}">____EDIT___</a><br>
+</nav><br>
+<nav class="w3-bar w3-red">
+<a href="delete/{{i.id}}">__DELETE__</a>
+</a>
+</nav> 
+</td>
+</tr>	
+	{% endfor %}
+</table>
+{% endblock %}
+</body>
+</html>

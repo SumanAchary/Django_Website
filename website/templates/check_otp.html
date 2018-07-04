@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0-rc.2/themes/smoothness/jquery-ui.css">
+</head>   
+
+<body background="texture4.jpg">
+    <h1 class="text-center bg-dark text-white">OTP VERIFICATION</h1>
+    <div class="container">
+        <br>
+        <form action="/check_OTP/" name="RegForm"   method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <div class="form-group">
+                <label>Email: </label>
+                <input type="text" name="CEmail" id="CEmail" class="form-control">
+                 <span id="emailerror" class="text-danger font-weight-bold">{{e_msg}}</span>
+            </div>
+             <div class="form-group">
+                <label>OTP: </label>
+                <input type="number" name="Cotp" id="Cotp" class="form-control" >
+                <span class="text-danger font-weight-bold">{{otp_m}}</span>
+            </div>            
+            <button type="submit" id="submitbutton" class="btn btn-danger"> Reset Password </button>          
+        </form>
+    </div>   
+</body>
+</html>

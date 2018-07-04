@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EDIT</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0-rc.2/themes/smoothness/jquery-ui.css">
+<script type="text/javascript">
+
+   
+      function show_alert() 
+{
+    var Name = document.getElementById("Name").value;
+    console.log("Name: " +Name);
+
+    var Email = document.getElementById("Email").value;
+    console.log("Email: " +Email);
+
+    var Telephone = document.getElementById("number").value;
+    console.log("Telephone: " +Telephone);
+    setTimeout(()=>{
+     alert("Thank you for registering, "+Name);
+    },1000)
+    
+}     
+
+</script>
+    <script>
+        function validation(){
+            
+            var username=document.getElementById('Name').value;
+            var password=document.getElementById('Password').value;
+            var cpassword=document.getElementById('cpassword').value;
+            var email=document.getElementById('Email').value;
+            var number=document.getElementById('number').value;
+            
+            var usercheck=/^[A-Za-z. ]{3,30}$/;
+            var passwordcheck=/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+            var emailcheck=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            var mobilecheck=/^[789][0-9]{9}$/;
+            
+            if(usercheck.test(username)){
+                document.getElementById('usererror').innerHTML=" ";
+            }else{
+                document.getElementById('usererror').innerHTML="** Username is invalid. ";
+                
+                return false;
+            }
+            
+            if(passwordcheck.test(password)){
+                document.getElementById('passworderror').innerHTML=" ";
+            }else{
+                document.getElementById('passworderror').innerHTML="** password is invalid. [it should have a Special character a Number a Capital Letter, Minimum  length 8]";
+                
+                return false;
+            }
+            
+            if(password == cpassword){
+                document.getElementById('cpassworderror').innerHTML=" ";
+            }else{
+                document.getElementById('cpassworderror').innerHTML="** Password is not matched. ";
+                
+                return false;
+            }
+            
+            if(emailcheck.test(email)){
+                document.getElementById('emailerror').innerHTML=" ";
+            }else{
+                document.getElementById('emailerror').innerHTML="** email is invalid. ";
+                
+                return false;
+            }
+            
+            if(mobilecheck.test(number)){
+                document.getElementById('mobileerror').innerHTML=" ";
+            }else{
+                document.getElementById('mobileerror').innerHTML="** Number is invalid. ";
+                
+                return false;
+            }
+            
+               show_alert();
+        }   
+        
+    </script>
+    
+</head>
+    	
+<body background="texture4.jpg">
+
+    <h1 class="text-center bg-dark text-white">UPDATE</h1>
+    <div class="container">
+        <br>
+        <form action="update/{{p.id}}" name="RegForm"  onsubmit="return validation()" method="POST" enctype="multipart/form-data">
+            <div class="form-group"> {% csrf_token %}
+                <label>Name: </label>
+                <input type="text" name="Name" id="Name" class="form-control" value="{{p.Name}}">
+                <span id="usererror" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label>Password: </label>
+                <input type="password" name="Password" id="Password" class="form-control"  value="{{p.Password}}">
+                <span id="passworderror" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label>Confirm Password: </label>
+                <input type="password" name="" id="cpassword" class="form-control" value="{{p.Password}}">
+                 <span id="cpassworderror" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label>Email: </label>
+                <input type="text" name="Email" id="Email" class="form-control" value="{{p.Email}}">
+                 <span id="emailerror" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label>Gender: </label>
+                <select name="Gender" id="Gender"> 
+                <option value="Male">Male</option>
+                <option value="Female">Female</option> 
+                </select> 
+                 <span id="Gender" name = 'Gender' class="text-danger font-weight-bold"></span>
+            </div>      
+            <div class="form-group">
+                <label>Mobile Number: </label>
+                <input type="text" name="Phone" id="number" class="form-control"  maxlength = "10" value="{{p.Phone}}">
+                 <span id="mobileerror" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label>Image: </label>
+                <input type="file" name="avatar" id="avatar" class="form-control" value="{{p.avatar}}" >
+                 <span id="file-upload" class="text-danger font-weight-bold"></span>
+            </div>
+            <div class="form-group">
+                <label>Country: </label>
+                <select name="country" id="country"> 
+                <option value="Null" selected="selected">Not selected</option>
+                <option value="USA">USA</option> 
+                <option value="India">India</option> 
+                <option value="UK">UK</option> 
+                <option value="Australia">Australia</option> 
+                <option value="Japan">Japan</option> 
+                <option value="Norway">Norway</option> 
+                <option value="Thailand">Thailand</option> 
+                <option value="Russia">Russia</option> 
+                <option value="Other">Other</option> 
+                </select> 
+                <span id="country" name = 'country' class="text-danger font-weight-bold"></span>
+            </div>    
+            <div class="form-group"> {% csrf_token %}
+                <label>About: </label>
+                <input type="text" name="about" id="about" class="form-control" value="{{p.about}}">
+                <span id="usererror" class="text-danger font-weight-bold"></span>
+            </div>      
+            <button type="submit" id="submitbutton" class="btn btn-danger"  onclick="validation()">Submit</button>
+        </form>
+    </div>   
+</body>
+</html>
